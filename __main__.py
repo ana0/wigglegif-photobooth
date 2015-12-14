@@ -62,18 +62,16 @@ def run():
     set_id = 0
     while True:
         # print("Press <enter> to capture more images, type m<enter> to model.")
-        print("Press enter to take a photo, press g to make a gif")
+        print("Press enter to make a gif")
         raw = raw_input()
         if raw == '':
             print("Delaying ...")
             time.sleep(10.0)
             one_shot(devices, set_id)
-            set_id = set_id + 1
-        elif raw == 'g':
-            # gifmaker.make_gifs(devices, set_id, rotation)
-            set_id = set_id + 1
+            gifmaker.make_gifs(devices, rotation, set_id)
         else:
             print("That won't work")
+        set_id = set_id + 1
 
 
 if __name__ == "__main__":

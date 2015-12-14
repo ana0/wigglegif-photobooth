@@ -13,9 +13,9 @@ An installation of ptpcam that's on your path as "ptpcam"
 images2gif.py
 
 
-I'll elborate on those last three since they may not be straightforward:
+I'll elaborate on those last three since they may not be straightforward:
 
-I got my cameras with a pre-hacked firmware, so I can't comment on any bugs you may run into with that.  However, CHDK has an awesome and actice community that probably has answers for whatever you may run into.  You will have to load some files onto the SD card and press some buttons in a specific order.  That sequence is *not* "up up down down left right left right B A start."
+I got my cameras with a pre-hacked firmware, so I can't comment on any bugs you may run into with that.  However, CHDK has an awesome and active community that probably has answers for whatever you may run into.  You will have to load some files onto the SD card and press some buttons in a specific order.  That sequence is *not* "up up down down left right left right B A start."
 
 I used this version of ptpcam <link here> 
 
