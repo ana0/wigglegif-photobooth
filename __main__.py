@@ -58,7 +58,7 @@ def run():
     chdk.chdk(devices, "luar set_record(true)")
     # Wait for the lenses to extend 
     time.sleep(3.0)
-
+s
     set_id = 0
     while True:
         # print("Press <enter> to capture more images, type m<enter> to model.")
