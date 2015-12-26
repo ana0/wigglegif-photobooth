@@ -13,8 +13,8 @@ def create_app(config_name):
 	crsf.init_app(app)
 
 	#let flask know which instance of the app 'app' is
-	with app.app_context():
+	# with app.app_context():
 		#db.drop_all()
-		db.create_all()
+
 
 	return app

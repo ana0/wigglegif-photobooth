@@ -3,6 +3,7 @@ import time
 import sys
 import subprocess
 import gifmaker
+from app import create_app
 
 def one_shot(devices, set_id):
     '''Takes a single photo from with all connected cameras.'''
@@ -19,6 +20,10 @@ def one_shot(devices, set_id):
     chdk.download_all(devices, set_id) # Will block until complete
 
 def run():
+
+    app = create_app('default')
+    app.run()
+
     print("Super awesome interactive session!")
     
     devices = chdk.get_devices()
@@ -58,7 +63,7 @@ def run():
     chdk.chdk(devices, "luar set_record(true)")
     # Wait for the lenses to extend 
     time.sleep(3.0)
-s
+
     set_id = 0
     while True:
         # print("Press <enter> to capture more images, type m<enter> to model.")
