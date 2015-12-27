@@ -1,0 +1,5 @@
+#exclude everything in giftest
+/giftest/*
+
+#exclude .pyc
+*.pyc
