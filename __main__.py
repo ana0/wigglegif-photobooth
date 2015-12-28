@@ -21,9 +21,6 @@ def one_shot(devices, set_id):
 
 def run():
 
-    app = create_app('default')
-    app.run()
-
     print("Super awesome interactive session!")
     
     devices = chdk.get_devices()
