@@ -3,3 +3,9 @@
 
 #exclude .pyc
 *.pyc
+
+#exclude static test gifs
+/web/app_main/static/giftest/*
+
+#exclude weird hidden file
+/web/app_main/templates/.*

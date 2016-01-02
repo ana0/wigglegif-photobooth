@@ -62,33 +62,11 @@
   
   
   <section class="gifs active-page">
+  	{% for gif in gifs %}
      <div>
-       <img src="" alt="image-one"/>
+       <img src="/../static/giftest/{{ gif }}" alt="image-one"/>
      </div>
-     <div>
-       <img src="" alt="image-two">
-     </div>
-     <div>
-       <img src="" alt="image-three">
-     </div>
-     <div>
-       <img src="" alt="image-four">
-     </div>
-     <div>
-       <img src="" alt="image-five">
-     </div>
-     <div>
-       <img src="" alt="image-two">
-     </div>
-     <div>
-       <img src="" alt="image-three">
-     </div>
-     <div>
-       <img src="" alt="image-four">
-     </div>
-     <div>
-       <img src="" alt="image-five">
-     </div>
+     {% endfor %}
     
    </section>
    <section class="about">
