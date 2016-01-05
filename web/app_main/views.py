@@ -5,7 +5,7 @@ import os
 @app.route('/')
 def hello_world():
 	gifs = []
-	for root, dirs, files in os.walk("/media/ana0/000/Documents/wigglegif/giftest"):
+	for root, dirs, files in os.walk("/media/ana0/000/Documents/wigglegif/web/app_main/static/giftest"):
 	    for f in files:
 	        if f.endswith('.GIF'):
 	            gifs.append(f)

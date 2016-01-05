@@ -10,50 +10,226 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-  
-  <script>
-  $(document).ready(function(){
-	  
-	$('#home').click(function()
-	{
-		$('section').removeClass('active-page');
-		
-	});
-  	$('#about').click(function()
-	{
-		$('.about').toggleClass('active-page');
-		$('#about i').slideToggle();
-		$('#about p').fadeToggle();	
-	});
-	$('#contact').click(function()
-	{
-		$('.contact').toggleClass('active-page');
-		$('#contact i').slideToggle();
-		$('#contact p').fadeToggle();
-	});
-  });
-  $(function() {
-    $( document ).tooltip({
-      track: true
-    });
-  });
-  </script>
-<title>Wiggly GIF</title>
+ 
+<title>Wiggle GIF</title>
+<style>
 
+body{
+  margin:0;
+  padding:0;
+  width:100%; 
+}
+header,footer{
+  position:fixed;
+  width:100%;
+  transition:1s all ease;
+  background-color:#222;
+  z-index:9999;
+}
+footer{
+  bottom:0;
+}
+nav ul li a{
+  position:relative;
+  height:100%;
+  transition:1s all ease;
+  color:white;
+}
+nav{
+  font-size:18px;
+}
+nav ul li a{
+  background-color:transparent !important;  
+  color:white !important;
+}
+.navbar-right{
+  float:right;
+}
+.navbar-left{
+  float:left;
+}
+footer nav ul{
+  position:relative;
+  transition:1s all ease;
+  width:100%;
+  height:100%;
+  text-align:center;
+}
+footer nav ul li, header nav ul li{
+  position:relative;
+  height:100%;
+  float:left;
+  transition:1s all ease;
+}
+footer nav ul li{
+  width:20%;
+  vertical-align:top;
+}
+
+.gifs,.about,.contact{
+  position:absolute;
+    white-space: nowrap;
+    width: 100%;
+  height:100vh;
+  transition:1s all ease;
+
+  
+}
+.about{
+  
+}
+.gifs > .gif {
+  position:relative;
+    background: #ccc;
+    width: 60vh;
+  height: 75%;
+  top:13vh;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+  border:5px solid white;
+  box-shadow:0px 0px 5px 1px;
+  margin-right:5vw;
+  opacity:0.5;
+  transition:1s all ease;
+  
+}
+.gifs > .gif:hover{
+  opacity:1;
+}
+
+.container-fluid{
+  padding:4% 8%;
+  background-color:white;.
+}
+
+input{
+  position:relative;
+  background-color:#333;
+  height:100%;
+  width:85px;
+  color:white;
+  border:none;
+  text-align:center;
+  padding:10px 0px;
+}
+
+img{
+  position:absolute;
+  height:100%;
+  width:100%;
+  display:inline;
+  vertical-align:top;
+  transition:0.5s all ease;
+}
+.arrow{
+  position:fixed;
+  width:15vw;
+  top:80%;
+  text-align:center;
+  z-index:9999;
+  opacity:0.5;
+  transition:1s all ease;
+  
+}
+.arrow:hover{
+  opacity:1;
+}
+.left{
+  float:left;
+  left:0;
+}
+.right{
+  float:right;
+  right:0;
+}
+.center{
+  position:relative;
+  top:45%;
+  margin:auto;
+  text-align:center;
+}
+.about,.contact{
+  background-color:white;
+  opacity:0;
+}
+.active-page{
+  z-index:2;
+  opacity:1;
+  cursor:
+}
+.active{
+  display:none;
+}
+nav a:hover,nav li.active a, nav li a:active, nav li.active a:active {
+      background-color: transparent !important;
+   color:white !important;
+}
+.about .container .row{
+  position:relative;
+
+}
+.col-sm-4{
+  position:relative;
+  margin:0;
+  margin-top:20vh;
+  margin-bottom:20vh;
+  height:60vh;
+  padding:0;
+  
+}.about img{
+  padding:10%;
+}
+footer nav ul li a p{
+  display:none;
+  position:absolute;
+  width:100%; 
+  height:100%;
+  text-align:center;
+}
+.button{
+  position:absolute;
+  background-color:white;
+  opacity:0.5;
+  border:1px solid white;
+  width:100%;
+  bottom:0;
+  margin:auto;
+  text-align:center;
+  transition:1s all ease;
+  text-decoration:none;
+  color:black;
+}
+.button:hover{
+  opacity:1
+}
+.fa-download{
+  padding:5%;
+  top:50%;
+}
+img{
+  text-align:center;
+}
+#logo{
+  transform-origin:center bottom;
+}
+#logo:hover{
+  transform:rotate(360deg);
+}
+</style>
 </head>
 
 <body>
 <header>
   <nav>
     <div class="container">
-    	
-  		<ul class="nav navbar-left">
-        <li><a id="home">NAME</a></li>
+ 
+
+      <ul class="nav navbar-left">
+        <li><a id="logo"><img class="logo" src="wigglegif logo.svg"/></a></li>
+        <li><a id="home">WIGGLEGIF</a></li>
         </ul>
         <ul class="nav navbar-right">
-        <li><input type="text" placeholder="GIF ID" ></li>
-        <li><a><i class="fa fa-search"></i></a></li>
-        <li><a><i class="fa fa-download"></i></a></li>
         </ul>
     </div>
   </nav>    
@@ -62,11 +238,35 @@
   
   
   <section class="gifs active-page">
-  	{% for gif in gifs %}
-     <div>
+     
+     {% for gif in gifs %}
+     <div class="gif">
        <img src="/../static/giftest/{{ gif }}" alt="image-one"/>
+       <a class="button" download="MyGIF" href="/../static/giftest/{{ gif }}" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
      </div>
      {% endfor %}
+    
+     <div class="gif">
+       <img src="giftest.JPG"/>
+       <a class="button" download="MyGIF" href="giftest.JPG" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
+     </div>
+     
+     <div class="gif">
+       <img src="giftest.JPG"/>
+       <a class="button" download="MyGIF" href="giftest.JPG" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
+     </div>
+     
+     <div class="gif">
+       <img src="giftest.JPG"/>
+       <a class="button" download="MyGIF" href="giftest.JPG" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
+     </div>
+     
+     <div class="gif">
+       <img src="giftest.JPG"/>
+       <a class="button" download="MyGIF" href="giftest.JPG" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
+     </div>
+  
+     
     
    </section>
    <section class="about">
@@ -90,12 +290,37 @@
          <ul class="nav">
            <li><a id="about" href="#" title="About Us" style="margin:0; padding-left:0;padding-right:0;"><p>THE TEAM</p><i class="fa fa-info"></i></a></li>
            <li><a id="contact" href="#" title="Contact Us"><i class="fa fa-envelope"></i></a></li>
-           <li><a id="insta" href="#" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-           <li><a id="twitter" href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-           <li><a id="download" href="#" title="Download your GIF"><i class="fa fa-download"></i></a></li>
-     	 </ul>
+      </ul>
        </div>
      </nav>
    </footer>
+   
+   <script>
+  $(document).ready(function(){
+   
+  $('#home').click(function()
+  {
+    $('section').removeClass('active-page');
+    
+  });
+    $('#about').click(function()
+  {
+    $('.about').toggleClass('active-page');
+    $('#about i').slideToggle();
+    $('#about p').fadeToggle(); 
+  });
+  $('#contact').click(function()
+  {
+    $('.contact').toggleClass('active-page');
+    $('#contact i').slideToggle();
+    $('#contact p').fadeToggle();
+  });
+  });
+  $(function() {
+    $( document ).tooltip({
+      track: true
+    });
+  });
+  </script>
 </body>
 </html>

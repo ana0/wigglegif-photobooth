@@ -3,7 +3,7 @@ import time
 import sys
 import subprocess
 import gifmaker
-from app import create_app
+#from app import create_app
 
 def one_shot(devices, set_id):
     '''Takes a single photo from with all connected cameras.'''
