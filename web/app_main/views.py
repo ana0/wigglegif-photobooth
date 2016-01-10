@@ -13,3 +13,7 @@ def hello_world():
     #gifs = [f for f in files if f.endswith('.gif')]
     #gifs = "gifs"
 	return render_template('index.html', gifs=gifs)
+
+@app.route('/uploads' methods = ['POST'])
+def upload_gif():
+	print "hallo"

@@ -6,6 +6,7 @@ def make_gifs(devices, rotation, set_id=0):
 	images = []
 	for device in devices:
 		temp = PIL.Image.open("%d-%d-%d.JPG" % (set_id, device[0], device[1]))
+		temp = resize_image(temp)
 		images.append(set_image_rotation(temp, rotation))
 	images2gif.writeGif("%d-%d-%d.GIF" % (set_id, device[0], device[1]), images)
 	return
@@ -26,4 +27,13 @@ def set_image_rotation(image, rotation):
 	else:
 		return image
 
-#make_gifs_test()
+def resize_image(image):
+	'''scales images down by a factor of 5'''
+	size = image.size
+	return image.resize((size[0]/5, size[1]/5), resample=PIL.Image.ANTIALIAS)
+	# temp = image.resize((size[0]/5, size[1]/5), resample=PIL.Image.ANTIALIAS)
+	# temp.save(name, format="jpeg")
+	# return
+
+# test = PIL.Image.open("0-2-10.JPG")
+# resize_image(test, "0-2-10")
