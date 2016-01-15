@@ -4,6 +4,7 @@ import sys
 import subprocess
 import gifmaker
 #from app import create_app
+import uploads
 
 def one_shot(devices, set_id):
     '''Takes a single photo from with all connected cameras.'''
@@ -61,7 +62,7 @@ def run():
     # Wait for the lenses to extend 
     time.sleep(3.0)
 
-    set_id = 0
+    set_id = 14
     while True:
         # print("Press <enter> to capture more images, type m<enter> to model.")
         print("Press enter to make a gif")
@@ -71,6 +72,7 @@ def run():
             time.sleep(10.0)
             one_shot(devices, set_id)
             gifmaker.make_gifs(devices, rotation, set_id)
+            uploads.upload_file(devices, set_id)
         else:
             print("That won't work")
         set_id = set_id + 1
