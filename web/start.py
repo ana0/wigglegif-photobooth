@@ -1,4 +1,5 @@
 from app_main import app
 
 # app = create_app('default')
-app.run()
+if __name__ == "__main__":
+	app.run()

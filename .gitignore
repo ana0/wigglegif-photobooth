@@ -8,5 +8,10 @@
 *.GIF
 
 #exclude .jpg
-#.JPG
+*.JPG
 
+#exclude venv
+/web/venv/*
+
+#exclude keys
+/web/app_main/aws.py

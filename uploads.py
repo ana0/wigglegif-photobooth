@@ -2,7 +2,7 @@ import subprocess
 
 def upload_file(devices, set_id=0):
 	print "Attempting to upload gif to the cloud ..."
-	subprocess.call(["aws s3 cp %d-%d-%d.GIF s3://wigglegifphotobooth/ --acl public-read-write" % (set_id, devices[0][0], devices[0][1])], shell=True)
+	subprocess.call(["aws s3 cp %d.GIF s3://wigglegifphotobooth/ --acl public-read-write" % (set_id)], shell=True)
 	return
 
 #upload_file(1, 2, 12)

@@ -1,326 +1,470 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='wigglygif.css') }}" type="text/css">
+  <!--<link rel="stylesheet" href="{{ url_for('static', filename='wigglygif.css') }}" type="text/css">-->
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
- 
-<title>Wiggle GIF</title>
+<title>WiggleGIF Photo Booth</title>
 <style>
 
 body{
-  margin:0;
-  padding:0;
-  width:100%; 
-}
-header,footer{
-  position:fixed;
-  width:100%;
-  transition:1s all ease;
-  background-color:#222;
-  z-index:9999;
-}
-footer{
-  bottom:0;
-}
-nav ul li a{
-  position:relative;
-  height:100%;
-  transition:1s all ease;
-  color:white;
+	margin:0;
+	padding:0;
+	font-family: "Century Gothic", "Century Schoolbook";
 }
 nav{
-  font-size:18px;
+	position:relative;
+	width:100%;
+	background-color:#333;
+	box-shadow:0px 0px 5px 1px;
 }
-nav ul li a{
-  background-color:transparent !important;  
-  color:white !important;
+footer{
+	bottom:0;
 }
-.navbar-right{
-  float:right;
-}
-.navbar-left{
-  float:left;
-}
-footer nav ul{
-  position:relative;
-  transition:1s all ease;
-  width:100%;
-  height:100%;
-  text-align:center;
-}
-footer nav ul li, header nav ul li{
-  position:relative;
-  height:100%;
-  float:left;
-  transition:1s all ease;
-}
-footer nav ul li{
-  width:20%;
-  vertical-align:top;
-}
-
 .gifs,.about,.contact{
-  position:absolute;
-    white-space: nowrap;
+	position:absolute;
+	white-space: nowrap;
     width: 100%;
-  height:100vh;
-  transition:1s all ease;
-
-  
-}
-.about{
-  
-}
-.gifs > .gif {
-  position:relative;
-    background: #ccc;
-    width: 60vh;
-  height: 75%;
-  top:13vh;
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-  border:5px solid white;
-  box-shadow:0px 0px 5px 1px;
-  margin-right:5vw;
-  opacity:0.5;
-  transition:1s all ease;
-  
-}
-.gifs > .gif:hover{
-  opacity:1;
-}
-
-.container-fluid{
-  padding:4% 8%;
-  background-color:white;.
-}
-
-input{
-  position:relative;
-  background-color:#333;
-  height:100%;
-  width:85px;
-  color:white;
-  border:none;
-  text-align:center;
-  padding:10px 0px;
-}
-
-img{
-  position:absolute;
-  height:100%;
-  width:100%;
-  display:inline;
-  vertical-align:top;
-  transition:0.5s all ease;
-}
-.arrow{
-  position:fixed;
-  width:15vw;
-  top:80%;
-  text-align:center;
-  z-index:9999;
-  opacity:0.5;
-  transition:1s all ease;
-  
-}
-.arrow:hover{
-  opacity:1;
-}
-.left{
-  float:left;
-  left:0;
-}
-.right{
-  float:right;
-  right:0;
-}
-.center{
-  position:relative;
-  top:45%;
-  margin:auto;
-  text-align:center;
+	height:100%;
+	transition:1s all ease;
 }
 .about,.contact{
-  background-color:white;
-  opacity:0;
-}
-.active-page{
-  z-index:2;
-  opacity:1;
-  cursor:
+	display:none;
 }
 .active{
-  display:none;
+	background-color:white;
 }
-nav a:hover,nav li.active a, nav li a:active, nav li.active a:active {
-      background-color: transparent !important;
-   color:white !important;
+.about-active{
+	position:relative;
+    background: #fff;
+    width: 60vh;
+	height: 74.5%;
+	top: 13%;
+	margin:0 1%;
+    display: inline-block;
+    *display: inline;
+	vertical-align:top;
+	zoom:1;
+	border:1vh solid white;
+	box-shadow:0px 0px 5px 1px;
+	transition:1s all ease;
 }
-.about .container .row{
-  position:relative;
+.gifs-active{
+	position:relative;
+    background: #fff;
+    width: 60vh;
+	height: 74.5%;
+	top: 13%;
+	margin:0 1%;
+    display: inline-block;
+    *display: inline;
+	vertical-align:top;
+	zoom:1;
+	border:1vh solid white;
+	box-shadow:0px 0px 5px 1px;
+	transition:1s all ease;
+}
+.contact > div{
+	position:relative;
+	width:80%;
+	height:74.5%;
+	top:12.5%;
+	border:1vh solid white;
+	margin:auto;
+	white-space:normal !important;
+	padding:50px;
+	text-align:center;
+}
 
+.logo-img{
+	position:relative;
+	display: block;
+/*	top: 50%;
+    transform: translateY(-50%);*/
+    width: 10% !important;
+    height: auto !important;
+	margin:auto;
+	margin:0 12.5%;
 }
-.col-sm-4{
-  position:relative;
-  margin:0;
-  margin-top:20vh;
-  margin-bottom:20vh;
-  height:60vh;
-  padding:0;
-  
-}.about img{
-  padding:10%;
+
+img{
+	position:absolute;
+	height:100%;
+	width:100%;
+	vertical-align:top;
+	transition:0.5s all ease;
 }
-footer nav ul li a p{
-  display:none;
-  position:absolute;
-  width:100%; 
-  height:100%;
-  text-align:center;
+ul{
+	position:relative;
+	height:100%;
+	width:100%;
+	padding:0;
 }
-.button{
-  position:absolute;
-  background-color:white;
-  opacity:0.5;
-  border:1px solid white;
-  width:100%;
-  bottom:0;
-  margin:auto;
-  text-align:center;
-  transition:1s all ease;
-  text-decoration:none;
-  color:black;
+li{
+	position:relative;
+	padding: 1vh 0vh;
+	background-color:#333;
+	transition:0.5s all ease;
+	float:left;
+	cursor:pointer;
 }
-.button:hover{
-  opacity:1
+
+footer nav ul li{
+	position:relative;
+	height:100%;
+	width:33.33%;
+	text-align:center;
+}
+footer li:hover{
+	background-color:#FFF;
+}
+footer a{
+	color:#aaa;
+	transition:1s ease;
+}
+header a,footer a{
+	background-color:transparent !important;
+}
+.button,.info{
+	position:absolute;
+	background-color:white;
+	opacity:0.5;
+	width:100%;
+	bottom:0;
+	margin:auto;
+	text-align:center;
+	transition:0.5s all ease;
+	text-decoration:none;
+}
+.info{
+	opacity:0;
+	height:100%;
+	color:transparent;
+	white-space:normal !important;
+	overflow: auto;
+}
+.info h3{
+	color:black;
+	padding:10px 0;
+}
+.info p{
+	position:relative;
+	height:100%;
+	width:100%;
+	font-size:15px;
+	padding: 0px 30px;
+	text-align:justify;
+}
+.button:hover,.info:hover{
+	opacity:0.85;
+	text-decoration:none;
+}
+.info:hover{
+	height:100%;
+	color:black;
 }
 .fa-download{
-  padding:5%;
-  top:50%;
+	padding:5%;
+	top:50%;
+	color:black;
 }
-img{
-  text-align:center;
+.info-link{
+	text-decoration:none;
+	color:black;
+	font-weight:bold;
 }
-#logo{
-  transform-origin:center bottom;
+.info-link:hover{
+	text-decoration:none;
 }
-#logo:hover{
-  transform:rotate(360deg);
+
+#name{
+	font-size:16px;
+	color:white;
+}
+#name:hover, #logo:hover, footer a:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+header li img{
+	margin-top:0.5vh;
+	margin-left:-50%;
+}
+@media screen and (max-width: 480px) {
+	.info p{
+		font-size:10px;
+	}
+	.contact h1{
+		font-size:16px;
+	}
+	.about h3{
+		font-size:16px;
+	}
+  }
+article{
+	position:absolute;
+	height:100%;
+	width:100%;
+}
+.arrow{
+	position:fixed;
+	height:100%;
+	width:50ps;
+	text-align:center;
+	z-index:9999;
+}
+.arrow-left{
+	float:left;
+	left:0;
+}
+.arrow i{
+	position:relative;
+	width:100%;
+	top:45%;
+	color: grey;
+}
+.arrow-right{
+	right:0;
+}
+.noborder{
+	position:relative;
+    background: #fff;
+    width: 60vh;
+	height: 74.5%;
+	top: 13%;
+	margin:0 1%;
+    display: inline-block;
+    *display: inline;
+	vertical-align:top;
+	zoom:1;
+	border:1vh solid white;
+	transition:1s all ease;
+}
+.nobordersm{
+	position:relative;
+    background: #fff;
+    width: 30vh;
+	height: 74.5%;
+	top: 13%;
+	margin:0 1%;
+    display: inline-block;
+    *display: inline;
+	vertical-align:top;
+	zoom:1;
+	border:1vh solid white;
+	transition:1s all ease;
 }
 </style>
 </head>
-
 <body>
-<header>
-  <nav>
-    <div class="container">
- 
+  <header>
+    <nav class="navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav">
+          <li><a id="name" href="wg.html">WIGGLEGIF PHOTOBOOTH</a></li>
+        </ul>
+        
+      </div>
+    </nav>
+  </header>
+  <article>
 
-      <ul class="nav navbar-left">
-        <li><a id="logo"><img class="logo" src="wigglegif logo.svg"/></a></li>
-        <li><a id="home">WIGGLEGIF</a></li>
-        </ul>
-        <ul class="nav navbar-right">
-        </ul>
-    </div>
-  </nav>    
-</header>
-  
-  
-  
-  <section class="gifs active-page">
-     
+  </article>
+  <section class="gifs" style="display: block;">
+
      {% for gif in gifs %}
-     <div class="gif">
-       <img src="/../static/giftest/{{ gif }}" alt="image-one"/>
-       <a class="button" download="MyGIF" href="/../static/giftest/{{ gif }}" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
+     <div class="gif gifs-active">
+       <!-- <a href="{{ gif }}"> --><img src="{{ gif }}" alt="image-gif"/><!-- </a> -->
+       <!-- <a class="button" download="MyGIF" href="{{ gif }}" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a> -->
      </div>
      {% endfor %}
-    
-     <div class="gif">
-       <img src="giftest.JPG"/>
-       <a class="button" download="MyGIF" href="giftest.JPG" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
-     </div>
-     
-     <div class="gif">
-       <img src="giftest.JPG"/>
-       <a class="button" download="MyGIF" href="giftest.JPG" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
-     </div>
-     
-     <div class="gif">
-       <img src="giftest.JPG"/>
-       <a class="button" download="MyGIF" href="giftest.JPG" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
-     </div>
-     
-     <div class="gif">
-       <img src="giftest.JPG"/>
-       <a class="button" download="MyGIF" href="giftest.JPG" title="Download Your GIF!"  ><i class="fa fa-download fa-2x"></i></a>
-     </div>
+     {% if more %}
+     <div class="arrow arrow-right noborder">
+     <a href="/{{next}}">
+      <i class="fa fa-3x fa-angle-double-right"></i>
+      </a>
+    </div>
+    {% endif %}
+  </section>
   
-     
+  <section class="about" style="display: none;">
+  <div class="nobordersm"></div>
+    <div class="about-active">
+      <img src="https://wigglegifphotobooth.s3.amazonaws.com/10.GIF">
+      <div class="info">
+          <h3 align="center"> SARAH FAIRLIE </h3>
+          <p>
+           Fairlie designed and built the camera mount for the Wigglegif Photobooth.
+           <br><br>
+           She is the Co-Artistic Director of <a class="info-link" href="http://www.caterwaultheatre.com">Caterwaul Theatre</a>  
+           and a member of the <a class="info-link" href="http://smalltalksmalltalk.com">Smalltalk Collective</a>.  
+           She also takes photos and makes animation, projections and shadow puppets. 
+           <br><br>
+           Upcoming projects include installations at 
+           <a class="info-link" href="http://www.harbourfrontcentre.com/harbourkids/2016/snowglobe/events/index.cfm?id=7987&amp;festival_id=223">HarbourKids Snowglobe</a>  
+           at the HarbourFront Centre and the Live Art Party as part of the <a class="info-link" href="http://thisisprogress.ca">Progress Festival</a> at the Theatre Centre.
+           <br><br>
+          </p>
+      </div>
+    </div>
     
-   </section>
-   <section class="about">
-     <div class="container">
-       <div class="row">
-         <div class="col-sm-4">
-           <img class="img-responsive" src="" alt="One"/>
-         </div>
-         <div class="col-sm-4">
-            <img class="img-responsive" src="" alt="Two"/>
-         </div>
-         <div class="col-sm-4">
-           <img class="img-responsive" src="" alt="Three"/>
-         </div>
-       </div>
-     </div>
-   </section>
-   <footer>
-     <nav>
-       <div class="container">
-         <ul class="nav">
-           <li><a id="about" href="#" title="About Us" style="margin:0; padding-left:0;padding-right:0;"><p>THE TEAM</p><i class="fa fa-info"></i></a></li>
-           <li><a id="contact" href="#" title="Contact Us"><i class="fa fa-envelope"></i></a></li>
-      </ul>
-       </div>
-     </nav>
-   </footer>
-   
-   <script>
-  $(document).ready(function(){
-   
-  $('#home').click(function()
-  {
-    $('section').removeClass('active-page');
+    <div class="about-active">
+      <img src="https://wigglegifphotobooth.s3.amazonaws.com/6.GIF">
+      <div class="info">
+        <h3 align="center"> SARAH FRIEND </h3>
+              <p>
+               Sarah Friend is an interdisciplinary designer and developer. 
+               For the Wigglegif Photobooth, she put together software to 
+               interact with the cameras and the web app backend.  
+               <br><br>
+               By day she is the production manager and senior designer at Guild Eyewear, 
+               as well as the Founder of Small Talk, an Interdisciplinary Lecture Series. 
+               <br><br>
+               Her current research interests include: abstract and educational games, 
+               sustainable manufacturing, and issues surrounding cryptography and net neutrality.
+               <br><br>
+               Many thanks to Rod Fitzsimmons-Frey for camera-loaning, chdk-related code, and so much support and advice. 
+               <br><br>  
+                <a class="info-link" href="http://www.sarahfriend.com/?ckattempt=1">www.sarahfriend.com</a> 
+              <br><br>  
+              </p>
+      </div>
+    </div>
     
-  });
-    $('#about').click(function()
+    <div class="about-active">
+      <img src="https://wigglegifphotobooth.s3.amazonaws.com/7.GIF">
+      <div class="info">
+        <h3 align="center"> KAYLA LEWIS </h3>
+          <p>
+            <br><br>
+            Kayla Lewis is the designer and front-end developer for the Wigglegif Photobooth website.
+            <br><br>
+            Her interests include education, ecotechnology, and resource-based economics.
+            <br><br>
+            She enjoys exploring web technologies in her free time and is currently working on her second degree in Information Security.
+            <br><br>
+       
+          </p>    
+      </div>
+    </div>
+      <div class="nobordersm"></div>
+  </section>
+  
+  <section class="contact" style="display: none;">
+    <div>
+    <h1 align="center">
+    <center><img class="logo-img" src="https://s3-us-west-2.amazonaws.com/wigglegifstaticassets/wigglegif+logo.png"></center>
+    </h1>
+      <h1 align="center">
+        WIGGLEGIF YOUR EVENT!
+      </h1>
+      <br>
+      <h3>
+        Interested in bringing the WiggleGIF Photo Booth to your event?
+        
+        <br><br>
+        Send us an email at <span class="info-link"> wigglegifphotobooth@gmail.com </span>
+      </h3>
+    </div>
+  </section>
+  
+  <footer>
+    <nav class="navbar-fixed-bottom">
+      <div class="container-fluid">
+       <ul class="nav">
+       	 <li class=""><a id="home" title="Home"><i class="fa fa-home"></i></a></li>
+          <li class=""><a id="info" title="About Us"><i class="fa fa-info"></i></a></li>
+          <li><a id="contact" title="Contact Us"><i class="fa fa-envelope"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </footer>  
+  
+  <script>
+  (function() {
+function scrollHorizontally(e) {
+    e = window.event || e;
+    var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+    document.documentElement.scrollLeft -= (delta*40); // Multiplied by 40
+    document.body.scrollLeft -= (delta*40); // Multiplied by 40
+    e.preventDefault();
+}
+if (window.addEventListener) {
+    // IE9, Chrome, Safari, Opera
+    window.addEventListener("mousewheel", scrollHorizontally, false);
+    // Firefox
+    window.addEventListener("DOMMouseScroll", scrollHorizontally, false);
+} else {
+    // IE 6/7/8
+    window.attachEvent("onmousewheel", scrollHorizontally);
+}
+})();
+  </script>
+  <script>
+  $(document).ready(function()
   {
-    $('.about').toggleClass('active-page');
-    $('#about i').slideToggle();
-    $('#about p').fadeToggle(); 
-  });
-  $('#contact').click(function()
-  {
-    $('.contact').toggleClass('active-page');
-    $('#contact i').slideToggle();
-    $('#contact p').fadeToggle();
-  });
-  });
-  $(function() {
-    $( document ).tooltip({
-      track: true
-    });
+	 $("footer li").click(function()
+	 {$("footer li").removeClass('active');
+		 $(this).toggleClass('active');
+		 
+		 
+	 });
+	 $("#home").click(function(){
+		$('.gifs').fadeIn();
+		$('.about').hide();
+		$('.contact').hide();
+	});
+	$("#info").click(function(){
+		$('.about').fadeIn();
+		$('.gifs').hide();
+		$('.contact').hide();
+	});
+	
+	$("#contact").click(function(){
+		$('.contact').show();
+		$('.about').hide();
+
+		$('.gifs').hide();
+	});
+	$(".arrow-left").click(function()
+	{		
+  		$('body').animate({scrollLeft:0})
+			 
+	});
+	$(".arrow-right").click(function()
+	{	
+		var right = $(document).width();
+		$('body').animate({scrollLeft:right})
+	});
   });
   </script>
+
+
 </body>
 </html>

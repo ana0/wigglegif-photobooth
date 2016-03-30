@@ -62,7 +62,7 @@ def run():
     # Wait for the lenses to extend 
     time.sleep(3.0)
 
-    set_id = 14
+    set_id = 173
     while True:
         # print("Press <enter> to capture more images, type m<enter> to model.")
         print("Press enter to make a gif")
